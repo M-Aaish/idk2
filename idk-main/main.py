@@ -310,7 +310,14 @@ if uploaded_file is not None:
             resized_img = input_img.resize((256, 256))
             file_path = os.path.join("uploads", uploaded_file.name)
             resized_img.save(file_path)
-            command = [sys.executable, "Oil-Painting.py", "--f", file_path, "--p", str(p_value)]
+            command = [
+                sys.executable,
+                os.path.join("idk-main", "Oil-Painting.py"),  # <-- point to idk-main folder
+                "--f",
+                file_path,
+                "--p",
+                str(p_value)
+            ]
             result = subprocess.run(command, capture_output=True, text=True)
             if result.returncode == 0:
                 base_name = os.path.splitext(uploaded_file.name)[0]
